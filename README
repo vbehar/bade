@@ -1,0 +1,21 @@
+
+BaDe - The Bash Deployer
+
+Collection of bash scripts used for deploying web applications.
+
+scripts :
+- bade-nexus.sh  : manipulate and download artifacts from the Nexus Repository Manager
+- bade-tomcat.sh : manipulate Tomcat (start/stop) and deploy WAR
+- bade-jsvc.sh   : manipulate JSVC (start/stop) and deploy JAR
+
+configuration :
+- bade-nexus.conf  : config file for accessing Nexus
+
+
+How the Tomcat deployment works :
+- Tomcat should already be installed in each host, and the env var CATALINA_HOME should be defined
+- An env var WEBAPPS_BASE should be set the a valid path where the script will create all the CATALINA_BASE directories (1 for each webapp)
+- The webapp should be packaged as a .war file in the Nexus repository manager
+- The tomcat conf for the webapp should be packaged as a .tar.gz file in the Nexus repository manager, named "${WEBAPP_NAME}-tomcat-conf", 
+  and with the environment ('prod', 'preprod', 'qa', 'dev', ...) as the classifier (see nexus/maven doc)
+
